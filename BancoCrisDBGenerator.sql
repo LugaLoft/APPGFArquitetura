@@ -1,15 +1,13 @@
 DROP SCHEMA IF EXISTS `bancocris`;
 CREATE SCHEMA IF NOT EXISTS `bancocris` DEFAULT CHARACTER SET utf8;
 USE `bancocris`;
-CREATE SCHEMA IF NOT EXISTS `bancocris` DEFAULT CHARACTER SET utf8;
-USE `bancocris`;
 
-CREATE TABLE IF NOT EXISTS `bancocris`.`Clliente` (
-  `idClliente` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `bancocris`.`cliente` (
+  `idcliente` INT NOT NULL AUTO_INCREMENT,
   `CNPJ` VARCHAR(18) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `telefone` VARCHAR(15) NOT NULL,
-  PRIMARY KEY (`idClliente`),
+  PRIMARY KEY (`idcliente`),
   UNIQUE INDEX `CNPJ_UNIQUE` (`CNPJ` ASC));
 
 CREATE TABLE IF NOT EXISTS `bancocris`.`Grupo` (
@@ -35,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `bancocris`.`Subgrupo` (
 
 CREATE TABLE IF NOT EXISTS `bancocris`.`Transacao` (
   `idTransacao` INT NOT NULL AUTO_INCREMENT,
-  `idClliente` INT NOT NULL,
+  `idcliente` INT NOT NULL,
   `idGrupo` INT NOT NULL,
   `idSubgrupo` INT NOT NULL,
   `idUsuario` INT NOT NULL,
@@ -44,13 +42,13 @@ CREATE TABLE IF NOT EXISTS `bancocris`.`Transacao` (
   `valor` DECIMAL(8,2) NOT NULL,
   `dataPagamento` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`idTransacao`),
-  INDEX `fk_Transacao_Clliente_idx` (`idClliente` ASC),
+  INDEX `fk_Transacao_cliente_idx` (`idcliente` ASC),
   INDEX `fk_Transacao_Grupo1_idx` (`idGrupo` ASC),
   INDEX `fk_Transacao_Usuario1_idx` (`idUsuario` ASC),
   INDEX `fk_Transacao_Subgrupo1_idx` (`idSubgrupo` ASC),
-  CONSTRAINT `fk_Transacao_Clliente`
-    FOREIGN KEY (`idClliente`)
-    REFERENCES `bancocris`.`Clliente` (`idClliente`)
+  CONSTRAINT `fk_Transacao_cliente`
+    FOREIGN KEY (`idcliente`)
+    REFERENCES `bancocris`.`cliente` (`idcliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Transacao_Grupo1`
