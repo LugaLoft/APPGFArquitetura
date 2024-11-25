@@ -2,7 +2,7 @@ DROP SCHEMA IF EXISTS `bancocris`;
 CREATE SCHEMA IF NOT EXISTS `bancocris` DEFAULT CHARACTER SET utf8;
 USE `bancocris`;
 
-CREATE TABLE IF NOT EXISTS `bancocris`.`cliente` (
+CREATE TABLE IF NOT EXISTS `bancocris`.`Cliente` (
   `idcliente` INT NOT NULL AUTO_INCREMENT,
   `CNPJ` VARCHAR(18) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
